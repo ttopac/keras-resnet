@@ -101,6 +101,7 @@ class ResNet1D(keras.Model):
             assert classes > 0
 
             x = keras.layers.GlobalAveragePooling1D(name="pool5")(x)
+            x = keras.layers.Dropout(rate=0.3)(x)
             x = keras.layers.Dense(classes, activation="softmax", name="fc1000")(x)
 
             super(ResNet1D, self).__init__(inputs=inputs, outputs=x, *args, **kwargs)
