@@ -73,6 +73,9 @@ class ResNet1D(keras.Model):
         if numerical_names is None:
             numerical_names = [True] * len(blocks)
 
+        if type(inputs) == list:
+            inputs = inputs[0]
+
         print (inputs)
         x = keras.layers.Conv1D(64, 7, strides=2, use_bias=True, name="conv1")(inputs)
         x = keras_resnet.layers.BatchNormalization(axis=axis, epsilon=1e-5, freeze=freeze_bn, name="bn_conv1")(x)
