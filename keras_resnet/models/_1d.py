@@ -73,7 +73,7 @@ class ResNet1D(keras.Model):
         if numerical_names is None:
             numerical_names = [True] * len(blocks)
 
-        x = keras.layers.Conv1D(64, 7, strides=2, use_bias=True, name="conv1")(inputs[0])
+        x = keras.layers.Conv1D(64, 7, strides=2, use_bias=True, name="conv1")(inputs)
         x = keras_resnet.layers.BatchNormalization(axis=axis, epsilon=1e-5, freeze=freeze_bn, name="bn_conv1")(x)
         x = keras.layers.Activation("relu", name="conv1_relu")(x)
         x = keras.layers.MaxPooling1D(3, strides=2, padding="same", name="pool1")(x)
