@@ -147,7 +147,6 @@ class ResNet1D18(ResNet1D):
 
         super(ResNet1D18, self).__init__(
             inputs,
-            classes,
             blocks,
             block=keras_resnet.blocks.basic_1d,
             include_top=include_top,
