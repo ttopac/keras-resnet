@@ -71,12 +71,13 @@ class Basic1D(keras.layers.Layer):
             self.kernel_size,
             strides=self.stride,
             use_bias=False,
+            kernel_regularizer='l2',
             name="res{}{}_branch2a".format(self.stage_char, self.block_char),
             **parameters
         )
         self.batchnormalizationa = keras_resnet.layers.ResNetBatchNormalization(
             axis=self.axis,
-            epsilon=1e-7,
+            epsilon=1e-5,
             freeze=self.freeze_bn,
             name="bn{}{}_branch2a".format(self.stage_char, self.block_char)
         )
@@ -92,12 +93,13 @@ class Basic1D(keras.layers.Layer):
             self.filters,
             self.kernel_size,
             use_bias=False,
+            kernel_regularizer='l2',
             name="res{}{}_branch2b".format(self.stage_char, self.block_char),
             **parameters
         )
         self.batchnormalizationb = keras_resnet.layers.ResNetBatchNormalization(
             axis=self.axis,
-            epsilon=1e-7,
+            epsilon=1e-5,
             freeze=self.freeze_bn,
             name="bn{}{}_branch2b".format(self.stage_char, self.block_char)
         )
@@ -107,12 +109,13 @@ class Basic1D(keras.layers.Layer):
                     1,
                     strides=self.stride,
                     use_bias=False,
+                    kernel_regularizer='l2',
                     name="res{}{}_branch1".format(self.stage_char, self.block_char),
                     **parameters
                 )
             self.batchnormalizationc = keras_resnet.layers.ResNetBatchNormalization(
                     axis=self.axis,
-                    epsilon=1e-7,
+                    epsilon=1e-5,
                     freeze=self.freeze_bn,
                     name="bn{}{}_branch1".format(self.stage_char, self.block_char)
                 )
@@ -201,7 +204,7 @@ class Bottleneck1D(keras.layers.Layer):
 
         self.batchnormalizationa = keras_resnet.layers.ResNetBatchNormalization(
             axis=self.axis,
-            epsilon=1e-7,
+            epsilon=1e-5,
             freeze=self.freeze_bn,
             name="bn{}{}_branch2a".format(self.stage_char, self.block_char)
         )
@@ -226,7 +229,7 @@ class Bottleneck1D(keras.layers.Layer):
 
         self.batchnormalizationb = keras_resnet.layers.ResNetBatchNormalization(
             axis=self.axis,
-            epsilon=1e-7,
+            epsilon=1e-5,
             freeze=self.freeze_bn,
             name="bn{}{}_branch2b".format(self.stage_char, self.block_char)
         )
@@ -246,7 +249,7 @@ class Bottleneck1D(keras.layers.Layer):
 
         self.batchnormalizationc = keras_resnet.layers.ResNetBatchNormalization(
             axis=self.axis,
-            epsilon=1e-7,
+            epsilon=1e-5,
             freeze=self.freeze_bn,
             name="bn{}{}_branch2c".format(self.stage_char, self.block_char)
         )
@@ -263,7 +266,7 @@ class Bottleneck1D(keras.layers.Layer):
 
             self.batchnormalizationd = keras_resnet.layers.ResNetBatchNormalization(
                 axis=self.axis,
-                epsilon=1e-7,
+                epsilon=1e-5,
                 freeze=self.freeze_bn,
                 name="bn{}{}_branch1".format(self.stage_char, self.block_char)
             )
