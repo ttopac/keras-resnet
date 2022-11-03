@@ -65,7 +65,7 @@ class ResNet2D(keras.Model):
         *args,
         **kwargs
     ):
-        super(ResNet1D, self).__init__(name=name, **kwargs)
+        super(ResNet2D, self).__init__(name=name, **kwargs)
         self.blocks = blocks
         self.block = block
         self.include_top = include_top
