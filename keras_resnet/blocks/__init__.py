@@ -13,8 +13,8 @@ from ._1d import (
 )
 
 from ._2d import (
-    basic_2d,
-    bottleneck_2d
+    Basic2D,
+    Bottleneck2D
 )
 
 from ._3d import (

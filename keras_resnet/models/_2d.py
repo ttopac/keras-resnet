@@ -169,8 +169,8 @@ class ResNet2D18(ResNet2D):
             **kwargs
         )
     
-    def __call__(self, inputs):
-        return super(ResNet2D18, self).call(inputs)
+    def __call__(self, inputs, training=False):
+        return super(ResNet2D18, self).call(inputs, training)
 
 
 class ResNet2D34(ResNet2D):
