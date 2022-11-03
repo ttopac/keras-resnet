@@ -162,7 +162,7 @@ class ResNet2D18(ResNet2D):
 
         super(ResNet2D18, self).__init__(
             blocks,
-            block=keras_resnet.blocks.basic_2d,
+            block=keras_resnet.blocks.Basic2D,
             include_top=include_top,
             classes=classes,
             freeze_bn=freeze_bn,
