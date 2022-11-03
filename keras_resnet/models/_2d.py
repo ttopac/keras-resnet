@@ -87,7 +87,9 @@ class ResNet2D(keras.Model):
         self.maxpooling2d = keras.layers.MaxPooling2D((3, 3), strides=(2, 2), padding="same", name="pool1")
         self.globalaveragepooling2d = keras.layers.GlobalAveragePooling2D(name="pool5")
         self.dense = keras.layers.Dense(self.classes, activation="softmax", name="fc1000")
-
+        
+        self.stagelist = []
+        self.blocklist = []
 
         features = 64
         for stage_id, iterations in enumerate(blocks):
@@ -105,7 +107,7 @@ class ResNet2D(keras.Model):
 
 
     def call (self, inputs, training=False):
-        x = self.conv2d(x)
+        x = self.conv2d(inputs)
         x = self.batchnormalization(x)
         x = self.activation(x)
         x = self.maxpooling2d(x)
