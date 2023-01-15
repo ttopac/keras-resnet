@@ -97,7 +97,6 @@ class ResNet1D(tensorflow.keras.Model):
                     freeze_bn=freeze_bn
                 )
                 self.lyrs.append (lyr)
-                self.layers.append (lyr)
             features *= 2
 
         self.glopoollast = tensorflow.keras.layers.GlobalAveragePooling1D(name="pool5")
