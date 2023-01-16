@@ -107,10 +107,10 @@ class ResNet1D(keras.Model):
             x = keras.layers.Dense(classes, activation="softmax", name="fc1000")(x)
 
             print (x)
-            super(ResNet1D, self).__init__(inputs=inputs, outputs=x, *args, **kwargs)
+            super(ResNet1D, self).__init__(inputs, *args, **kwargs)
         else:
             # Else output each stages features
-            super(ResNet1D, self).__init__(inputs=inputs, outputs=outputs, *args, **kwargs)
+            super(ResNet1D, self).__init__(inputs, *args, **kwargs)
 
 
 class ResNet1D18(ResNet1D):
