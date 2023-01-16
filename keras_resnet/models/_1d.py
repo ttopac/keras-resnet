@@ -72,7 +72,10 @@ class ResNet1D(keras.Model):
 
         if numerical_names is None:
             numerical_names = [True] * len(blocks)
-
+        
+        if type(inputs) == list:
+            inputs = inputs[0]
+            
         x = keras.layers.ZeroPadding1D(padding=3, name="padding_conv1")(inputs)
         x = keras.layers.Conv1D(64, 7, strides=2, use_bias=False, name="conv1")(x)
         x = keras_resnet.layers.BatchNormalization(axis=axis, epsilon=1e-5, freeze=freeze_bn, name="bn_conv1")(x)
@@ -96,17 +99,21 @@ class ResNet1D(keras.Model):
             features *= 2
 
             outputs.append(x)
-
+        
         if include_top:
             assert classes > 0
 
             x = keras.layers.GlobalAveragePooling1D(name="pool5")(x)
             x = keras.layers.Dense(classes, activation="softmax", name="fc1000")(x)
-
-            super(ResNet1D, self).__init__(inputs=inputs, outputs=x, *args, **kwargs)
+            
+            if "outputs" in kwargs.keys():
+              x = kwargs["outputs"]
+              kwargs.pop("outputs")
+            
+            super(ResNet1D, self).__init__(inputs, x, *args, **kwargs)
         else:
             # Else output each stages features
-            super(ResNet1D, self).__init__(inputs=inputs, outputs=outputs, *args, **kwargs)
+            super(ResNet1D, self).__init__(inputs, outputs, *args, **kwargs)
 
 
 class ResNet1D18(ResNet1D):
