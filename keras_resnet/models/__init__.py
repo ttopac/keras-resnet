@@ -10,6 +10,7 @@ This module implements popular residual models.
 from ._1d import (
     ResNet1D,
     ResNet1D18,
+    ResNet1D18Regression,
     ResNet1D34,
     ResNet1D50,
     ResNet1D101,
